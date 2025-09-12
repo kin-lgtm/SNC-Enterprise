@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "name": "Sumal de Silva",
+    "designation": "General Manager",
+    "image": "./assets/imgs/our-team/team-1.jpg",
+    "bio": "Sumal de Silva leads SNC Private Limited as General Manager, bringing vision and strategic direction to the company’s multi-sector growth. He oversees retail, trading, warehousing, and real estate operations, ensuring long-term value creation and trusted partnerships.",
+    "social": {
+      "facebook": "https://www.facebook.com",
+      "twitter": "https://x.com/?lang=en",
+      "instagram": "https://www.instagram.com/",
+      "linkedin": "https://bd.linkedin.com/"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Nimali Perera",
+    "designation": "Finance Director",
+    "image": "./assets/imgs/our-team/team-2.jpg",
+    "bio": "Nimali oversees all financial operations, ensuring compliance, transparency, and efficiency across company accounts.",
+    "social": {
+      "facebook": "#",
+      "twitter": "#",
+      "instagram": "#",
+      "linkedin": "#"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Ruwan Jayasinghe",
+    "designation": "Operations Head",
+    "image": "./assets/imgs/our-team/team-3.jpg",
+    "bio": "Ruwan manages day-to-day operations, optimizing workflows and maintaining top-quality service delivery.",
+    "social": {
+      "facebook": "#",
+      "twitter": "#",
+      "instagram": "#",
+      "linkedin": "#"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Ishara Fernando",
+    "designation": "Marketing Manager",
+    "image": "./assets/imgs/our-team/team-4.jpg",
+    "bio": "Ishara drives marketing campaigns and brand development, focusing on digital strategies and market growth.",
+    "social": {
+      "facebook": "#",
+      "twitter": "#",
+      "instagram": "#",
+      "linkedin": "#"
+    }
+  }
+]
