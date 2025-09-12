@@ -1,0 +1,49 @@
+[
+  {
+    "id": 1,
+    "title": "The Power of Accent Lighting in Interior Design",
+    "category": "Consumer",
+    "author": "SNC Enterprise",
+    "date": "October 19, 2023",
+    "image": "./assets/imgs/blog-grid/blog-10.png",
+    "description": "Bibendum est ultricies integer quis auctor elit sed vulputate Vivamus...",
+    "content": [
+      {
+        "type": "text",
+        "value": "There are many variations of passages of Lorem Ipsum available, but majority have suffered alteration..."
+      },
+      {
+        "type": "image",
+        "value": "./assets/imgs/blog-details/blog-details.jpg"
+      },
+      {
+        "type": "text",
+        "value": "Suspendisse ultricies vestibulum vehicula. Proin laoreet porttitor lacus..."
+      },
+      {
+        "type": "video",
+        "thumbnail": "./assets/imgs/blog-details/blog-details-2.jpg",
+        "url": "https://www.youtube.com/watch?v=blrw3LTAZIE"
+      },
+      {
+        "type": "text",
+        "value": "Pellentesque dignissim malesuada varius et semper semper rutrum ad risus felis eros..."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "How Retail Brands Build Trust in Sri Lanka",
+    "category": "Consumer",
+    "author": "SNC Enterprise",
+    "date": "November 10, 2023",
+    "image": "./assets/imgs/blog-grid/blog-5.png",
+    "description": "A look at Sri Lanka’s most reliable retail chains and how they maintain customer loyalty.",
+    "content": [
+      {
+        "type": "text",
+        "value": "Sri Lanka’s retail sector has seen a significant transformation..."
+      }
+    ]
+  }
+]

@@ -271,66 +271,18 @@
     <!-- project-details area start -->
     
     <section class="blog-grid section-space mt-100">
-        <div class="row">
-                <div class="section__title-wrapper text-center mb-55 mb-xs-40">
-                    <span class="section__subtitle justify-content-center">Consumer and Retails</span>
-                    <h2 class="section__title title-animation">The Most Trusted Brands in Sri Lanka</h2>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row mb-minus-30 mt-20">
-                    
-                    <div class="col-lg-4">
-                        <div class="blog-grid__item">
-                            <a href="blog-details.html" class="blog-grid__media">
-                                <img src="./assets/imgs/blog-grid/blog-10.png" alt="image not found">
-                            </a>
-                            
-                            <div class="blog-grid__content">
-                              <ul class="blog-grid__meta">
-                                    <li><a href="blog-details.html">Consumer</a></li>
-                                    <li><a href="blog-details.html">SNC Enterprise</a></li>
-                                </ul>  
-                                <h6 class="mb-10"><a href="blog-details.html">The Power of Accent Lighting in Interior Design</a></h6>
-                                <p>Bibendum est ultricies integer quis auctor elit sed vulputate Vivamus...</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="blog-grid__item">
-                            <a href="blog-details.html" class="blog-grid__media">
-                                <img src="./assets/imgs/blog-grid/blog-5.png" alt="image not found">
-                            </a>
-                            
-                            <div class="blog-grid__content">
-                              <ul class="blog-grid__meta">
-                                    <li><a href="blog-details.html">Consumer</a></li>
-                                    <li><a href="blog-details.html">SNC Enterprise</a></li>
-                                </ul>  
-                                <h6 class="mb-10"><a href="blog-details.html">The Power of Accent Lighting in Interior Design</a></h6>
-                                <p>Bibendum est ultricies integer quis auctor elit sed vulputate Vivamus...</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="blog-grid__item">
-                            <a href="blog-details.html" class="blog-grid__media">
-                                <img src="./assets/imgs/blog-grid/blog-5.png" alt="image not found">
-                            </a>
-                            
-                            <div class="blog-grid__content">
-                              <ul class="blog-grid__meta">
-                                    <li><a href="blog-details.html">Consumer</a></li>
-                                    <li><a href="blog-details.html">SNC Enterprise</a></li>
-                                </ul>  
-                                <h6 class="mb-10"><a href="blog-details.html">The Power of Accent Lighting in Interior Design</a></h6>
-                                <p>Bibendum est ultricies integer quis auctor elit sed vulputate Vivamus...</p>
-                            </div>
-                        </div>
-                    </div>                    
-                </div>
-            </div>
-        </section>
+  <div class="row">
+    <div class="section__title-wrapper text-center mb-55 mb-xs-40">
+      <span class="section__subtitle justify-content-center">Consumer and Retails</span>
+      <h2 class="section__title title-animation">The Most Trusted Brands in Sri Lanka</h2>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row mb-minus-30 mt-20" id="blogGrid">
+      <!-- Blog cards will load here -->
+    </div>
+  </div>
+</section>
     <!-- brand area start -->
      <div class="row">
                 <div class="section__title-wrapper text-center mb-55 mb-xs-40">
@@ -490,7 +442,34 @@
     </section>
 </footer>
 <!-- Footer-2 area end -->
-    
+<script>
+  fetch("data/retailDetails.json")
+    .then(res => res.json())
+    .then(posts => {
+      const container = document.getElementById("blogGrid");
+      posts.forEach(post => {
+        container.innerHTML += `
+          <div class="col-lg-4">
+            <div class="blog-grid__item">
+              <a href="blog-details.html?id=${post.id}" class="blog-grid__media">
+                <img src="${post.image}" alt="${post.title}">
+              </a>
+              <div class="blog-grid__content">
+                <ul class="blog-grid__meta">
+                  <li><a href="#">${post.category}</a></li>
+                  <li><a href="#">${post.author}</a></li>
+                </ul>  
+                <h6 class="mb-10">
+                  <a href="blog-details.html?id=${post.id}">${post.title}</a>
+                </h6>
+                <p>${post.description}</p>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    });
+</script>    
 <!-- JS here -->
 <script src="assets/js/vendor/jquery-3.7.1.min.js"></script>
 <script src="assets/js/plugins/waypoints.min.js"></script>
