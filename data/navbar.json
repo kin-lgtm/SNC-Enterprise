@@ -1,0 +1,24 @@
+{
+  "logo": "assets/imgs/logo/logo-white.png",
+  "links": [
+    { "name": "Home", "url": "index.html", "active": true },
+    { "name": "About Us", "url": "about-us.html" },
+    {
+      "name": "What We Do",
+      "url": "services-retail.html",
+      "submenu": [
+        { "name": "Retail", "url": "services-retail.html" },
+        { "name": "Real Estate", "url": "services-real-estate.html" },
+        { "name": "Trading (Import & Export)", "url": "services-trading.html" },
+        { "name": "Automotive", "url": "services-automotive.html" }
+      ]
+    },
+    { "name": "Testimonials", "url": "testimonial.html" },
+    { "name": "News & Updates", "url": "blog-grid.html" },
+    { "name": "Culture & Careers", "url": "careers.html" }
+  ],
+  "contactButton": {
+    "text": "Contact Us",
+    "url": "contact-us.html"
+  }
+}
