@@ -1,0 +1,47 @@
+{
+  "articles": [
+    {
+      "images": [
+        "./assets/imgs/protfolio-details/protfolio-1.png",
+        "./assets/imgs/protfolio-details/protfolio-2.png",
+        "./assets/imgs/protfolio-details/protfolio-3.png",
+        "./assets/imgs/protfolio-details/protfolio-4.png",
+        "./assets/imgs/protfolio-details/protfolio-5.png",
+        "./assets/imgs/protfolio-details/protfolio-6.png",
+        "./assets/imgs/protfolio-details/protfolio-7.png"
+      ],
+      "date": "July 9, 2025",
+      "author": "SNC Group",
+      "commentsCount": 2,
+      "title": "Maldives – Outdoor Fitness & Playground Equipment",
+      "description": "SNC Group successfully delivered and installed a wide range of outdoor fitness and playground equipment in the Maldives. These installations were specially designed for resorts, schools, and public recreational facilities, with a focus on safety, durability, and user engagement. From colorful play structures for children to weather-resistant fitness stations for adults, the project enhanced outdoor spaces by encouraging wellness, leisure, and family-friendly activities. Our solutions are tailored to withstand tropical climates while blending seamlessly with the natural beauty of Maldivian landscapes.",
+      "link": "article-maldives.html"
+    },
+    {
+      "images": [
+        "./assets/imgs/protfolio-details/protfolio-9.png",
+        "./assets/imgs/protfolio-details/protfolio-10.png",
+        "./assets/imgs/protfolio-details/protfolio-11.png"
+      ],
+      "date": "August 15, 2025",
+      "author": "SNC Group",
+      "commentsCount": 3,
+      "title": "Qatar – Children’s Play Areas & Outdoor Fitness Equipment",
+      "description": "In Qatar, SNC Group supplied and installed modern children’s play areas and outdoor fitness equipment to serve communities and recreational spaces. The children’s play structures were designed with creativity and safety standards in mind, offering fun, educational, and interactive experiences for kids of all ages. Additionally, our outdoor fitness equipment encourages a culture of health and well-being, enabling families and individuals to exercise in open environments. This project reflects our mission to promote active lifestyles while building inclusive, sustainable spaces in Qatar’s rapidly developing urban areas.",
+      "link": "article-qatar.html"
+    },
+    {
+      "images": [
+        "./assets/imgs/protfolio-details/protfolio-12.png",
+        "./assets/imgs/protfolio-details/protfolio-13.png"      
+      ],
+      "date": "September 1, 2025",
+      "author": "SNC Group",
+      "commentsCount": 1,
+      "title": "Turkey - Children’s Play Area Equipment",
+      "description": "Our children’s play area equipment is designed to create safe, enjoyable, and developmentally enriching spaces for kids. SNC Group provides a variety of playground structures, including swings, slides, climbing frames, and creative play units. Every product is built using high-quality, durable materials and meets international safety standards. The aim is not only to provide entertainment but also to support physical activity, motor skills development, and social interaction among children. Whether installed in schools, parks, or community areas, our play equipment helps create joyful spaces that inspire imagination and active play.",
+      "link": "article-playarea.html"
+    }
+    
+  ]
+}

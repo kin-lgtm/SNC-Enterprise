@@ -281,75 +281,28 @@
 <!-- Header area end -->
 
 <main>
-    <section class="blog-grid section-space mt-100">
-        <div class="row">
-                <div class="section__title-wrapper text-center mb-55 mb-xs-40">
-                    <span class="section__subtitle justify-content-center">Trading Projects</span>
-                    <h2 class="section__title title-animation">The Most Trusted Brand in Global Trading</h2>
-                </div>
+    <section class="blog-grid section-space mt-50">
+  <div class="row">
+    <div class="section__title-wrapper text-center mb-55 mb-xs-40">
+      <span class="section__subtitle justify-content-center">Trading Projects</span>
+      <h2 class="section__title title-animation">The Most Trusted Brands in Sri Lanka</h2>
+    </div>
+  </div>
+  <div class="blog-container">
+    <div class="row" id="articles-container">
+                <!-- Articles will be dynamically inserted here -->
             </div>
-            <div class="container">
-                <div class="row mb-minus-30 mt-20">
-                    
-                    <div class="col-lg-4">
-                        <div class="blog-grid__item">
-                            <a href="blog-details.html" class="blog-grid__media">
-                                <img src="./assets/imgs/blog-grid/blog-11.png" alt="image not found">
-                            </a>
-                            
-                            <div class="blog-grid__content">
-                              <ul class="blog-grid__meta">
-                                    <li><a href="blog-details.html">Consumer</a></li>
-                                    <li><a href="blog-details.html">SNC Enterprise</a></li>
-                                </ul>  
-                                <h6 class="mb-10"><a href="#">Trading Materials (Factory in Turkey)</a></h6>
-                                    <p>High-quality building and industrial materials sourced directly from our partner factory in Turkey, ensuring reliability and competitive pricing for global clients.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="blog-grid__item">
-                            <a href="@" class="blog-grid__media">
-                                <img src="./assets/imgs/blog-grid/blog-12.png" alt="image not found">
-                            </a>
-                            
-                            <div class="blog-grid__content">
-                              <ul class="blog-grid__meta">
-                                    <li><a href="blog-details.html">Consumer</a></li>
-                                    <li><a href="blog-details.html">SNC Enterprise</a></li>
-                                </ul>  
-                                <h6 class="mb-10"><a href="#">Childrenès Play Area (Doha Qatar)</a></h6>
-                                <p>Children’s Play Area Equipment in doha Qatar is a Safe, durable, and engaging playground structures designed for schools, parks, and community spaces.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="blog-grid__item">
-                            <a href="blog-details.html" class="blog-grid__media">
-                                <img src="./assets/imgs/blog-grid/blog-13.png" alt="image not found">
-                            </a>
-                            
-                            <div class="blog-grid__content">
-                              <ul class="blog-grid__meta">
-                                    <li><a href="blog-details.html">Consumer</a></li>
-                                    <li><a href="blog-details.html">SNC Enterprise</a></li>
-                                </ul>  
-                                <h6 class="mb-10"><a href="#">Maldives Trading (Outdoor Fitness Equipment)</a></h6>
-                                <p>Weather-resistant exercise stations and recreational fitness units built for public parks, waterfronts, and open spaces to encourage healthy lifestyles.</p>
-                            </div>
-                        </div>
-                    </div>                    
-                </div>
-            </div>
-        </section>
+  </div>
+</section>
     
 
     <!-- project-details area start -->
-     <div class="section__title-wrapper text-center mb-55 mb-xs-40">
+     
+    <section class="protfolio section-space__top">
+        <div class="section__title-wrapper text-center mb-55 mb-xs-40">
                     <span class="section__subtitle justify-content-center">Product Categories</span>
                     <h2 class="section__title title-animation">The Most Trusted Brand in Global Trade</h2>
                 </div>
-    <section class="protfolio section-space__top">
   <div class="container">
     <div class="protfolio__tab masonary-menu">
       <button data-filter="*" class="active">All </button>
@@ -799,6 +752,167 @@ am5.ready(function () {
 
 
 }); // end am5.ready()
+    // Global variables to track slideshow state
+    let slideshowIntervals = {};
+    let currentImageIndexes = {};
+    let articles = []; // will be loaded from JSON
+
+    // Function to create article HTML
+    function createArticleHTML(article, index) {
+        const thumbnailsHTML = article.images.map((src, idx) => `
+            <div class="blog-3__small-image ${idx === 0 ? 'active' : ''}" 
+                 onclick="handleThumbnailClick(${index}, ${idx})" 
+                 style="cursor: pointer;" 
+                 data-article="${index}" 
+                 data-index="${idx}">
+                <img src="${src}" alt="Thumb ${idx + 1}">
+            </div>
+        `).join('');
+
+        return `
+            <div class="col-lg-12 mb-5">
+                <div class="blog-3__item flex-layout">
+                    <!-- Left side: Images -->
+                    <div class="blog-3__images">
+                        <div class="blog-3__large-image">
+                            <img id="main-image-${index}" src="${article.images[0]}" alt="Main">
+                        </div>
+                        <div class="blog-3__small-images" id="thumbnails-${index}">
+                            ${thumbnailsHTML}
+                        </div>
+                    </div>
+
+                    <!-- Right side: Content -->
+                    <div class="blog-3__content">
+                        <ul class="blog-3__meta">
+                            <li>
+                                <a href="${article.link || '#'}">
+                                    <i class="fa-regular fa-calendar-days"></i>
+                                    ${article.date}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${article.link || '#'}">
+                                    <i class="fa-regular fa-user"></i>
+                                    By ${article.author}
+                                </a>
+                            </li>
+                        </ul>
+
+                        <h4>${article.title}</h4>
+                        <p>${article.description}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // Function to update main image and active thumbnail
+    function updateMainImage(articleIndex, imageIndex) {
+        const article = articles[articleIndex];
+        const mainImage = document.getElementById(`main-image-${articleIndex}`);
+        const thumbnailsContainer = document.getElementById(`thumbnails-${articleIndex}`);
+        
+        if (!mainImage || !thumbnailsContainer) return;
+        
+        const thumbnails = thumbnailsContainer.querySelectorAll('.blog-3__small-image');
+
+        // Update main image
+        mainImage.src = article.images[imageIndex];
+
+        // Update active thumbnail
+        thumbnails.forEach((thumb, index) => {
+            if (index === imageIndex) {
+                thumb.classList.add('active');
+            } else {
+                thumb.classList.remove('active');
+            }
+        });
+
+        // Update current index
+        currentImageIndexes[articleIndex] = imageIndex;
+    }
+
+    // Function to start automatic slideshow
+    function startSlideshow(articleIndex) {
+        // Stop any existing slideshow for this article
+        stopSlideshow(articleIndex);
+        
+        const article = articles[articleIndex];
+        if (!article || article.images.length <= 1) return;
+
+        // Initialize current index if not exists
+        if (currentImageIndexes[articleIndex] === undefined) {
+            currentImageIndexes[articleIndex] = 0;
+        }
+
+        slideshowIntervals[articleIndex] = setInterval(() => {
+            // Move to next image
+            currentImageIndexes[articleIndex] = (currentImageIndexes[articleIndex] + 1) % article.images.length;
+            updateMainImage(articleIndex, currentImageIndexes[articleIndex]);
+        }, 2000); // 2 second interval
+    }
+
+    // Function to stop slideshow
+    function stopSlideshow(articleIndex) {
+        if (slideshowIntervals[articleIndex]) {
+            clearInterval(slideshowIntervals[articleIndex]);
+            delete slideshowIntervals[articleIndex];
+        }
+    }
+
+    // Function to handle thumbnail clicks
+    function handleThumbnailClick(articleIndex, imageIndex) {
+        stopSlideshow(articleIndex);
+        updateMainImage(articleIndex, imageIndex);
+        
+        // Restart slideshow after 3 seconds
+        setTimeout(() => {
+            startSlideshow(articleIndex);
+        }, 3000);
+    }
+
+    // Initialize the page
+    async function initializePage() {
+        const container = document.getElementById('articles-container');
+        if (!container) return;
+
+        try {
+            // Fetch JSON
+            const response = await fetch('data/tradingDetails.json');
+            const data = await response.json();
+            articles = data.articles;
+
+            // Clear container
+            container.innerHTML = '';
+
+            // Add each article
+            articles.forEach((article, index) => {
+                container.innerHTML += createArticleHTML(article, index);
+                currentImageIndexes[index] = 0;
+            });
+
+            // Start slideshows after DOM is updated
+            setTimeout(() => {
+                articles.forEach((_, index) => {
+                    startSlideshow(index);
+                });
+            }, 500);
+        } catch (error) {
+            console.error("Error loading articles.json", error);
+        }
+    }
+
+    // Cleanup function to stop all slideshows
+    function cleanup() {
+        Object.keys(slideshowIntervals).forEach(articleIndex => {
+            stopSlideshow(articleIndex);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', initializePage);
+    window.addEventListener('beforeunload', cleanup);
+
 </script>
 
 
