@@ -1,0 +1,33 @@
+{
+  "articles": [
+    {
+      "images": [
+        "./assets/imgs/protfolio-details/protfolio-14.png",
+        "./assets/imgs/protfolio-details/protfolio-15.png",
+        "./assets/imgs/protfolio-details/protfolio-16.png"
+      ],
+      "date": "July 9, 2025",
+      "author": "SNC Group",
+      "type": "Commercial",
+      "status": "Completed (Currently Rented)",
+      "title": "Warehouse Facility – Pattivilla, Sri Lanka",
+      "description": "A strategically located warehouse facility available for long-term rental, ideal for storage, logistics, and business operations. This project provides businesses with high-capacity space, excellent access routes, and secure infrastructure for reliable operations. ",
+      "brochure": "./assets/brochures/warehouse-brochure.pdf",
+      "link": "article-warehouse.html"
+    },
+    {
+      "images": [
+        "./assets/imgs/protfolio-details/protfolio-17.png",
+        "./assets/imgs/protfolio-details/protfolio-18.png"  
+      ],
+      "date": "Dec 31, 2025",
+      "author": "SNC Group",
+      "type": "Residential / Hospitality",
+      "status": "Ongoing (Completion by end of year)",
+      "title": "A-Frame House with Plunge Pool – Coastal Area",
+      "description": "A modern A-frame residence with a private plunge pool, designed as a premium Airbnb rental for leisure travelers seeking comfort and style. Built with a fusion of natural wood and glass architecture, it ensures relaxation and privacy while catering to high-end tourism demand.",
+      "brochure": "./assets/brochures/warehouse-brochure.pdf",
+      "link": "article-aframe.html"
+    }
+  ]
+}

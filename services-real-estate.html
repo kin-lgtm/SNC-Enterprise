@@ -264,79 +264,32 @@
 <!-- Header area end -->
 
 <main>
+    <section class="blog-grid section-space mt-50">
+  <div class="row">
+    <div class="section__title-wrapper text-center mb-50  mb-xs-40">
+      <span class="section__subtitle justify-content-center">Projects</span>
+      <h2 class="section__title title-animation">The Most Trusted Brands in Sri Lanka</h2>
+    </div>
+  </div>
+  <div class="blog-container">
+    <div class="row" id="articles-container">
+                <!-- Articles will be dynamically inserted here -->
+            </div>
+  </div>
+</section>
     
-    <section class="blog-grid section-space mt-100">
+    <section class="blog-grid section-space mt-50">
         <div class="row">
-                <div class="section__title-wrapper text-center mb-55 mb-xs-40">
-                    <span class="section__subtitle justify-content-center">Projects</span>
-                    <h2 class="section__title title-animation">The Most Trusted Brands in Sri Lanka</h2>
-                </div>
+                
             </div>
             <div class="container">
                 <div class="row mb-minus-30 mt-20">
                     
                     <div class="col-lg-4">
-                        <div class="blog-grid__item">
-                            <a href="blog-details.html" class="blog-grid__media">
-                                <img src="./assets/imgs/blog-grid/blog-7.png" alt="image not found">
-                            </a>                           
-                            <div class="blog-grid__content">
-                              <ul class="blog-grid__meta">
-                                    <li><a href="blog-details.html">Residential</a></li>
-                                    <li><a href="blog-details.html">Planned </a></li>
-                                </ul>   
-                                <h6 class="mb-10"><a href="blog-details.html">The Power of Accent Lighting in Interior Design</a></h6>
-                                <p>Bibendum est ultricies integer quis auctor elit sed vulputate Vivamus. Bibendum est ultricies integer quis auctor elit sed vulputate Vivamus...</p>
-                            <div class="sidebar__widget-download mt-20 text-center ">
-                                <a href="#">
-                                    Download Brochure
-                                </a>
-                            </div>
-                            </div>                            
-                        </div>
+                        
                     </div>
-                    <div class="col-lg-4">
-                        <div class="blog-grid__item">
-                            <a href="blog-details.html" class="blog-grid__media">
-                                <img src="./assets/imgs/blog-grid/blog-8.png" alt="image not found">
-                            </a>
-                            
-                            <div class="blog-grid__content">
-                              <ul class="blog-grid__meta">
-                                    <li><a href="blog-details.html">Commercial</a></li>
-                                    <li><a href="blog-details.html">Planned </a></li>
-                                </ul>   
-                                <h6 class="mb-10"><a href="blog-details.html">The Power of Accent Lighting in Interior Design</a></h6>
-                                <p>Bibendum est ultricies integer quis auctor elit sed vulputate Vivamus. Bibendum est ultricies integer quis auctor elit sed vulputate Vivamus...</p>
-                            <div class="sidebar__widget-download mt-20 text-center ">
-                                <a href="#">
-                                    Download Brochure
-                                </a>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="blog-grid__item">
-                            <a href="blog-details.html" class="blog-grid__media">
-                                <img src="./assets/imgs/blog-grid/blog-9.png" alt="image not found">
-                            </a>
-                            
-                            <div class="blog-grid__content">
-                              <ul class="blog-grid__meta">
-                                    <li><a href="blog-details.html">Commercial</a></li>
-                                    <li><a href="blog-details.html"> Completed</a></li>
-                                </ul>   
-                                <h6 class="mb-10"><a href="blog-details.html">The Power of Accent Lighting in Interior Design</a></h6>
-                                <p>Bibendum est ultricies integer quis auctor elit sed vulputate Vivamus. Bibendum est ultricies integer quis auctor elit sed vulputate Vivamus...</p>
-                            <div class="sidebar__widget-download mt-20 text-center ">
-                                <a href="#">
-                                    Download Brochure
-                                </a>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    
                     <div class="section__title-wrapper text-center mb-55 mb-xs-40">
                     <span class="section__subtitle justify-content-center">Rentals</span>
                     <h2 class="section__title title-animation">The Most Trusted Brands in Sri Lanka</h2>
@@ -438,30 +391,6 @@
             </div>
         </section>
         
-
-
-        
-
-    <!-- brand area start -->
-    <!-- <section class="brand brand__space has--transparent">
-        <div class="container">
-            <div class="slider-brand">
-                <div class="container">
-                    <div class="rr-scroller" data-speed="slow">
-                        <ul class="text-anim rr-scroller__inner">
-                            <li><a href="#"><img src="./assets/imgs/brand-2/brand-1.png" alt="image not found"></a></li>
-                            <li><a href="#"><img src="./assets/imgs/brand-2/brand-2.png" alt="image not found"></a></li>
-                            <li><a href="#"><img src="./assets/imgs/brand-2/brand-4.png" alt="image not found"></a></li>
-                            <li><a href="#"><img src="./assets/imgs/brand-2/brand-1.png" alt="image not found"></a></li>
-                            <li><a href="#"><img src="./assets/imgs/brand-2/brand-2.png" alt="image not found"></a></li>
-                            <li><a href="#"><img src="./assets/imgs/brand-2/brand-4.png" alt="image not found"></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-    <!-- brand area end -->
 
 </main>
 
@@ -595,6 +524,101 @@
     </section>
 </footer>
 <!-- Footer-2 area end -->
+<script>
+let articles = [];
+
+function createArticleHTML(article, index) {
+  const galleryHTML = article.images.map((src, idx) => `
+    <a href="#modal-${index}-${idx}">
+      <img src="${src}" alt="Gallery ${idx + 1}">
+    </a>
+
+    <!-- Modal for this image -->
+    <div id="modal-${index}-${idx}" class="modal">
+      <a href="#" class="modal-close">&times;</a>
+      <img src="${src}" alt="Full Image">
+    </div>
+  `).join('');
+
+  return `
+    <div class="col-lg-12 mb-5">
+        
+      <div class="blog-3__item flex-layout align-items-center">
+
+        <!-- Left side: Tabs -->
+        <div class="blog-3__images">
+          <ul class="nav nav-tabs" id="tabs-${index}">
+            <li class="nav-item">
+              <a class="nav-link active" data-bs-toggle="tab" href="#cover-${index}">Cover</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#gallery-${index}">Gallery</a>
+            </li>
+          </ul>
+          <div class="tab-content mt-3">
+            
+            <!-- Cover Image -->
+            <div class="tab-pane fade show active" id="cover-${index}">
+              <div class="blog-3__large-image">
+                <img src="${article.images[0]}" alt="Cover Image">
+              </div>
+            </div>
+            
+            <!-- Gallery Grid -->
+            <div class="tab-pane fade" id="gallery-${index}">
+              <div class="gallery-grid">
+                ${galleryHTML}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right side: Content -->
+        <div class="blog-3__content">
+          <ul class="blog-3__meta">
+            <li><i class="fa-regular fa-calendar-days"></i> ${article.date}</li>
+            <li><i class="fa-regular fa-user"></i> ${article.author}</li>
+            <li><i class="fa-solid fa-industry"></i> ${article.type}</li>
+            <li><i class="fa-solid fa-circle-check"></i> ${article.status}</li>
+          </ul>
+
+          <h4>${article.title}</h4>
+          <p>${article.description}</p>
+
+          ${article.brochure ? `
+            <div class="sidebar__widget-download mt-20 text-align-center">
+              <a href="${article.brochure}" target="_blank">Download Brochure</a>
+            </div>` : ""}
+            
+        </div>
+      </div>
+      
+    </div>
+  `;
+}
+
+async function initializePage() {
+  const container = document.getElementById('articles-container');
+  if (!container) return;
+
+  try {
+    const response = await fetch('data/realstateDetails.json');
+    const data = await response.json();
+    articles = data.articles;
+
+    container.innerHTML = '';
+    articles.forEach((article, index) => {
+      container.innerHTML += createArticleHTML(article, index);
+    });
+
+  } catch (error) {
+    console.error("Error loading realstateDetails.json", error);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initializePage);
+</script>
+
     
 <!-- JS here -->
 <script src="assets/js/vendor/jquery-3.7.1.min.js"></script>

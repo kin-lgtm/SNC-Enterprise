@@ -270,27 +270,26 @@
 
     <!-- project-details area start -->
     
-    <section class="blog-grid section-space mt-100">
+    <section class="blog-grid section-space mt-50">
   <div class="row">
     <div class="section__title-wrapper text-center mb-55 mb-xs-40">
-      <span class="section__subtitle justify-content-center">Consumer and Retails</span>
+      <span class="section__subtitle justify-content-center">Trading Projects</span>
       <h2 class="section__title title-animation">The Most Trusted Brands in Sri Lanka</h2>
     </div>
   </div>
-  <div class="container">
-    <div class="row mb-minus-30 mt-20" id="blogGrid">
-      <!-- Blog cards will load here -->
-    </div>
+  <div class="blog-container">
+    <div class="row" id="articles-container">
+                <!-- Articles will be dynamically inserted here -->
+            </div>
   </div>
 </section>
     <!-- brand area start -->
-     <div class="row">
-                <div class="section__title-wrapper text-center mb-55 mb-xs-40">
+     
+    <section class="brand brand__space has--transparent mt-100">
+        <div class="section__title-wrapper text-center mb-55 mb-xs-40">
                     <span class="section__subtitle justify-content-center">Our Brands</span>
                     <h2 class="section__title title-animation">The Most Trusted Brands in Sri Lanka</h2>
                 </div>
-            </div>
-    <section class="brand brand__space has--transparent">
         <div class="container">
             <div class="slider-brand">
                 <div class="container">
@@ -443,32 +442,166 @@
 </footer>
 <!-- Footer-2 area end -->
 <script>
-  fetch("data/retailDetails.json")
-    .then(res => res.json())
-    .then(posts => {
-      const container = document.getElementById("blogGrid");
-      posts.forEach(post => {
-        container.innerHTML += `
-          <div class="col-lg-4">
-            <div class="blog-grid__item">
-              <a href="blog-details.html?id=${post.id}" class="blog-grid__media">
-                <img src="${post.image}" alt="${post.title}">
-              </a>
-              <div class="blog-grid__content">
-                <ul class="blog-grid__meta">
-                  <li><a href="#">${post.category}</a></li>
-                  <li><a href="#">${post.author}</a></li>
-                </ul>  
-                <h6 class="mb-10">
-                  <a href="blog-details.html?id=${post.id}">${post.title}</a>
-                </h6>
-                <p>${post.description}</p>
-              </div>
+  let slideshowIntervals = {};
+    let currentImageIndexes = {};
+    let articles = []; // will be loaded from JSON
+
+    // Function to create article HTML
+    function createArticleHTML(article, index) {
+        const thumbnailsHTML = article.images.map((src, idx) => `
+            <div class="blog-3__small-image ${idx === 0 ? 'active' : ''}" 
+                 onclick="handleThumbnailClick(${index}, ${idx})" 
+                 style="cursor: pointer;" 
+                 data-article="${index}" 
+                 data-index="${idx}">
+                <img src="${src}" alt="Thumb ${idx + 1}">
             </div>
-          </div>
+        `).join('');
+
+        return `
+            <div class="col-lg-12 mb-5">
+                <div class="blog-3__item flex-layout">
+                    <!-- Left side: Images -->
+                    <div class="blog-3__images">
+                        <div class="blog-3__large-image">
+                            <img id="main-image-${index}" src="${article.images[0]}" alt="Main">
+                        </div>
+                        <div class="blog-3__small-images" id="thumbnails-${index}">
+                            ${thumbnailsHTML}
+                        </div>
+                    </div>
+
+                    <!-- Right side: Content -->
+                    <div class="blog-3__content">
+                        <ul class="blog-3__meta">
+                            <li>
+                                <a href="${article.link || '#'}">
+                                    <i class="fa-regular fa-calendar-days"></i>
+                                    ${article.date}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${article.link || '#'}">
+                                    <i class="fa-regular fa-user"></i>
+                                    By ${article.author}
+                                </a>
+                            </li>
+                        </ul>
+
+                        <h4>${article.title}</h4>
+                        <p>${article.description}</p>
+                    </div>
+                </div>
+            </div>
         `;
-      });
-    });
+    }
+
+    // Function to update main image and active thumbnail
+    function updateMainImage(articleIndex, imageIndex) {
+        const article = articles[articleIndex];
+        const mainImage = document.getElementById(`main-image-${articleIndex}`);
+        const thumbnailsContainer = document.getElementById(`thumbnails-${articleIndex}`);
+        
+        if (!mainImage || !thumbnailsContainer) return;
+        
+        const thumbnails = thumbnailsContainer.querySelectorAll('.blog-3__small-image');
+
+        // Update main image
+        mainImage.src = article.images[imageIndex];
+
+        // Update active thumbnail
+        thumbnails.forEach((thumb, index) => {
+            if (index === imageIndex) {
+                thumb.classList.add('active');
+            } else {
+                thumb.classList.remove('active');
+            }
+        });
+
+        // Update current index
+        currentImageIndexes[articleIndex] = imageIndex;
+    }
+
+    // Function to start automatic slideshow
+    function startSlideshow(articleIndex) {
+        // Stop any existing slideshow for this article
+        stopSlideshow(articleIndex);
+        
+        const article = articles[articleIndex];
+        if (!article || article.images.length <= 1) return;
+
+        // Initialize current index if not exists
+        if (currentImageIndexes[articleIndex] === undefined) {
+            currentImageIndexes[articleIndex] = 0;
+        }
+
+        slideshowIntervals[articleIndex] = setInterval(() => {
+            // Move to next image
+            currentImageIndexes[articleIndex] = (currentImageIndexes[articleIndex] + 1) % article.images.length;
+            updateMainImage(articleIndex, currentImageIndexes[articleIndex]);
+        }, 2000); // 2 second interval
+    }
+
+    // Function to stop slideshow
+    function stopSlideshow(articleIndex) {
+        if (slideshowIntervals[articleIndex]) {
+            clearInterval(slideshowIntervals[articleIndex]);
+            delete slideshowIntervals[articleIndex];
+        }
+    }
+
+    // Function to handle thumbnail clicks
+    function handleThumbnailClick(articleIndex, imageIndex) {
+        stopSlideshow(articleIndex);
+        updateMainImage(articleIndex, imageIndex);
+        
+        // Restart slideshow after 3 seconds
+        setTimeout(() => {
+            startSlideshow(articleIndex);
+        }, 3000);
+    }
+
+    // Initialize the page
+    async function initializePage() {
+        const container = document.getElementById('articles-container');
+        if (!container) return;
+
+        try {
+            // Fetch JSON
+            const response = await fetch('data/retailDetails.json');
+            const data = await response.json();
+            articles = data.articles;
+
+            // Clear container
+            container.innerHTML = '';
+
+            // Add each article
+            articles.forEach((article, index) => {
+                container.innerHTML += createArticleHTML(article, index);
+                currentImageIndexes[index] = 0;
+            });
+
+            // Start slideshows after DOM is updated
+            setTimeout(() => {
+                articles.forEach((_, index) => {
+                    startSlideshow(index);
+                });
+            }, 500);
+        } catch (error) {
+            console.error("Error loading articles.json", error);
+        }
+    }
+
+    // Cleanup function to stop all slideshows
+    function cleanup() {
+        Object.keys(slideshowIntervals).forEach(articleIndex => {
+            stopSlideshow(articleIndex);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', initializePage);
+    window.addEventListener('beforeunload', cleanup);
+
 </script>    
 <!-- JS here -->
 <script src="assets/js/vendor/jquery-3.7.1.min.js"></script>
